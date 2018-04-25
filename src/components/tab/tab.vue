@@ -1,5 +1,7 @@
 <template>
   <div class="tab">
+  	<!--router-link默认是a标签    tag='div'变成div标签 -->
+  	<!--点击那个路由会默认添加router-link-active的class名字-->
     <router-link tag="div" class="tab-item" to="/recommend">
       <span class="tab-link">推荐</span>
     </router-link>

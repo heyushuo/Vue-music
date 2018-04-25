@@ -80,6 +80,7 @@
           child.style.width = sliderWidth + 'px'
           width += sliderWidth
         }
+        //如果是循环需要两个的宽度
         if (this.loop && !isResize) {
           width += 2 * sliderWidth
         }

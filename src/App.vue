@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+  <!--引用组件的时候可以使小写例如：tab  驼峰的可以改成m-header-->
     <MHeader></MHeader>
     <Tab></Tab>
     <router-view></router-view>
