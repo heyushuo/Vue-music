@@ -3,7 +3,7 @@ import {commonParams, options} from './config'
 
 export function getSingerList() {
   const url = 'https://c.y.qq.com/v8/fcg-bin/v8.fcg'
-
+//Object.assign()  拼接对象的
   const data = Object.assign({}, commonParams, {
     channel: 'singer',
     page: 'list',
