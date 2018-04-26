@@ -9,6 +9,9 @@
 
   export default {
     props: {
+    	//有时候我们需要知道滚动的位置。当 probeType 为 1 的时候，会非实时（屏幕滑动超过一定时间后）派发scroll 事件；当 probeType 为 2 的时候，
+//  	会在屏幕滑动的过程中实时的派发 scroll 事件；当 probeType 为 3 的时候，不仅在屏幕滑动的过程中，
+//  	而且在 momentum 滚动动画运行过程中实时派发 scroll 事件。如果没有设置该值，其默认值为 0，即不派发 scroll 事件。
       probeType: {
         type: Number,
         default: 1
@@ -17,10 +20,12 @@
         type: Boolean,
         default: true
       },
+      //
       listenScroll: {
         type: Boolean,
         default: false
       },
+      //数据动态变化的，数据变化了需要重新refesh  BetterScroll
       data: {
         type: Array,
         default: null
@@ -45,9 +50,12 @@
     },
     methods: {
       _initScroll() {
+      	//dom没加载呢直接return
         if (!this.$refs.wrapper) {
           return
         }
+        //然后初始化
+        
         this.scroll = new BScroll(this.$refs.wrapper, {
           probeType: this.probeType,
           click: this.click
