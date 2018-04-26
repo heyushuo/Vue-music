@@ -1,19 +1,21 @@
 <template>
   <div class="recommend" ref="recommend">
-  	<div v-if="recommends.length" class="slider-wrapper">
-  		<slider>
-  			<div v-for="item in recommends" >
-  				<a :href="item.linkUrl">
-  					<img :src="item.picUrl"/>
-  				</a>
-  			</div>
-  		</slider>
-    </div>
-	<div class="recommend-list">
-       <h1 class="list-title">热门歌单推荐</h1>
-       <ul>
-       </ul>
-    </div>
+  	<div class="recommend-content">
+	  	<div v-if="recommends.length" class="slider-wrapper">
+	  		<slider>
+	  			<div v-for="item in recommends" >
+	  				<a :href="item.linkUrl">
+	  					<img :src="item.picUrl"/>
+	  				</a>
+	  			</div>
+	  		</slider>
+	    </div>
+			<div class="recommend-list">
+	       <h1 class="list-title">热门歌单推荐</h1>
+	       <ul>
+	       </ul>
+	    </div>
+	  </div>
   </div>
 </template>
 
@@ -48,6 +50,7 @@
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
+
   .recommend
     position: fixed
     width: 100%
