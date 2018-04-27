@@ -6,6 +6,7 @@
           class="listview"
           ref="listview">
     <ul>
+      <!-- 遍历所有的歌手名字和title -->
       <li v-for="(group,index) in data" :key='index' class="list-group" ref="listGroup">
         <h2 class="list-group-title">{{group.title}}</h2>
         <uL>
@@ -16,6 +17,7 @@
         </uL>
       </li>
     </ul>
+    <!-- 遍历所有的歌手名字和title -->
     <div class="list-shortcut" @touchstart.stop.prevent="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove"
          @touchend.stop>
       <ul>
