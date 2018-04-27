@@ -45,7 +45,7 @@
   		return {
   			recommends:[],
   			discList:[],
-  			checkLoaded:false
+				checkLoaded:false
   		}
   	},
    	created(){
