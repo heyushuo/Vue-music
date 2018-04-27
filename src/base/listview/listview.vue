@@ -18,6 +18,7 @@
       </li>
     </ul>
     <!-- 遍历所有的歌手名字和title -->
+    <!-- 这些事件是better-scroll封装的 -->
     <div class="list-shortcut" @touchstart.stop.prevent="onShortcutTouchStart" @touchmove.stop.prevent="onShortcutTouchMove"
          @touchend.stop>
       <ul>
@@ -51,11 +52,13 @@
       }
     },
     computed: {
+      //得到右边热门和字母的数组
       shortcutList() {
         return this.data.map((group) => {
           return group.title.substr(0, 1)
         })
       },
+      // 
       fixedTitle() {
         if (this.scrollY > 0) {
           return ''
@@ -71,6 +74,9 @@
       }
     },
     created() {
+      //为什么不在data里存放这些呢？
+      //data里放的是为了双向相应的
+      //这些数据不需要所以放到created里
       this.probeType = 3
       this.listenScroll = true
       this.touch = {}
@@ -81,17 +87,22 @@
         this.$emit('select', item)
       },
       onShortcutTouchStart(e) {
+        //获得点击的索引
         let anchorIndex = getData(e.target, 'index')
-        let firstTouch = e.touches[0]
+        let firstTouch = e.touches[0]  //当前手指的位置
+        console.log(firstTouch)
         this.touch.y1 = firstTouch.pageY
         this.touch.anchorIndex = anchorIndex
-
+        //滚动到相应的dom位置
         this._scrollTo(anchorIndex)
       },
+      // 监听滚动事件
       onShortcutTouchMove(e) {
         let firstTouch = e.touches[0]
-        this.touch.y2 = firstTouch.pageY
+        this.touch.y2 = firstTouch.pageY  //滚动的距离顶部距离
+        //这里需要计算出滑动了几个字母  每个字母占位18
         let delta = (this.touch.y2 - this.touch.y1) / ANCHOR_HEIGHT | 0
+        //得到滚动到第几个元素
         let anchorIndex = parseInt(this.touch.anchorIndex) + delta
 
         this._scrollTo(anchorIndex)
@@ -100,8 +111,10 @@
         this.$refs.listview.refresh()
       },
       scroll(pos) {
+        // 计算y轴滚动的距离
         this.scrollY = pos.y
       },
+      // 计算高度计算出每个group的高度放到数组里
       _calculateHeight() {
         this.listHeight = []
         const list = this.$refs.listGroup
@@ -122,11 +135,14 @@
         } else if (index > this.listHeight.length - 2) {
           index = this.listHeight.length - 2
         }
+        // 当点击每个字母时，计算出当前区块滚动的高度
         this.scrollY = -this.listHeight[index]
+        //使dom滚动到相应的dom位置上   最后0参数是否瞬间滚动到指定位置
         this.$refs.listview.scrollToElement(this.$refs.listGroup[index], 0)
       }
     },
     watch: {
+      // 监听data变化了计算高度
       data() {
         setTimeout(() => {
           this._calculateHeight()

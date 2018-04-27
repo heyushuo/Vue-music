@@ -20,7 +20,7 @@
         type: Boolean,
         default: true
       },
-      //
+      //设置是否监听滚动事件
       listenScroll: {
         type: Boolean,
         default: false
@@ -60,10 +60,13 @@
           probeType: this.probeType,
           click: this.click
         })
-
+        // 监听是否滚动并把滚动的距离派发给父组件
+        // pos是个对象里边包含x轴和y轴距离
         if (this.listenScroll) {
           let me = this
+          // 监听scroll对象的滚动事件
           this.scroll.on('scroll', (pos) => {
+            // 向父组件派发scroll事件
             me.$emit('scroll', pos)
           })
         }
@@ -91,6 +94,7 @@
       refresh() {
         this.scroll && this.scroll.refresh()
       },
+      //添加滚动事件
       scrollTo() {
         this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
       },
