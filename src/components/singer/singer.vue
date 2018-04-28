@@ -1,6 +1,7 @@
 <template>
 	<div class="singer">
-		<list-view :data='singers' ></list-view>
+		<list-view @select="selectSinger" :data='singers' ></list-view>
+		<router-view></router-view>
 	</div>
 </template>
 
@@ -9,7 +10,7 @@
 	import {ERROR_OK} from 'api/config'
 	import Singer from 'common/js/singer'
 	import ListView from 'base/listview/listview'
-
+	
 	const HOT_SINGER_LEN = 10
   	const HOT_NAME = '热门'
 	export default {
@@ -25,6 +26,11 @@
 			}
 		},
 		methods:{
+			selectSinger(singer){
+				this.$router.push({
+					path: `/singer/${singer.id}`
+				})
+			},
 			_getSingerList(){
 				getSingerList().then((res)=>{
 					
