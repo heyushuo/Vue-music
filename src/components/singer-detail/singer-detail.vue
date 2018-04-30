@@ -6,6 +6,7 @@
     </transition>  
 </template>
 <script type="text/ecmascript-6" >
+
 export default {
   data () {
       return {
@@ -16,10 +17,14 @@ export default {
       
   },
   components: {
-      
+      Rank
   },
   methods: {
+      getData(){
+          console.log('');
       
+          
+      }
   }
 }
 </script>
