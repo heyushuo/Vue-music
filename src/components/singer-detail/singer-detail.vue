@@ -20,11 +20,9 @@ export default {
       Rank
   },
   methods: {
-      getData(){
-          console.log('');
-      
-          
-      }
+     getData(){
+         
+     }
   }
 }
 </script>
